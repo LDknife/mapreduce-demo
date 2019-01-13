@@ -36,6 +36,10 @@ public class WordCountDriver {
         //job.setInputFormatClass(CombineTextInputFormat.class);
         //CombineTextInputFormat.setMinInputSplitSize(job,2097152);
         //CombineTextInputFormat.setMaxInputSplitSize(job,4194304);
+        
+        // 把TextInputFormat 设置为 NLineInputFormat 为设置多少行为一个切片
+        //job.setInputFormatClass(NLineInputFormat.class);
+        //NLineInputFormat.setNumLinesPerSplit(job,2);
 
         //6.设置输入和输出路径
         FileInputFormat.setInputPaths(job,new Path(args[0]));
