@@ -31,6 +31,11 @@ public class WordCountDriver {
         //5.设置reduce的输出参数
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
+        
+        //8 把TextInputFormat 设置为 CombineTextInputFormat  为设置多个小文件为一个切片
+        //job.setInputFormatClass(CombineTextInputFormat.class);
+        //CombineTextInputFormat.setMinInputSplitSize(job,2097152);
+        //CombineTextInputFormat.setMaxInputSplitSize(job,4194304);
 
         //6.设置输入和输出路径
         FileInputFormat.setInputPaths(job,new Path(args[0]));
