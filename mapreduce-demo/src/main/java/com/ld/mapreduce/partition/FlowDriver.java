@@ -1,4 +1,4 @@
-package com.ld.mapreduce.serializable;
+package com.ld.mapreduce.partition;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -12,12 +12,12 @@ import java.io.IOException;
  * @author:ld
  * @create:2019-01-23 17:19
  * @description: 流量统计 驱动类
- * 对文件截取，统计输出 手机号 上行流量 下行流量 总流量  (序列化)
+ * 对文件截取，统计输出 手机号 上行流量 下行流量 总流量  (自定义分区)
  */
 public class FlowDriver {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        args = new String[]{"e:/input/serializable","e:/serializable"};
+        args = new String[]{"e:/input/partition","e:/partition"};
         //1. 获取job对象
         Job job = Job.getInstance();
 
@@ -35,6 +35,13 @@ public class FlowDriver {
         //5. 设置最终输出参数类型
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBean.class);
+
+        /**
+         * 设置partitioner类路径
+         */
+        job.setPartitionerClass(ProvincePartitioner.class);
+        //设置分区个数
+        job.setNumReduceTasks(5);
 
         //6. 设置输入输出文件路径
         FileInputFormat.setInputPaths(job,new Path(args[0]));

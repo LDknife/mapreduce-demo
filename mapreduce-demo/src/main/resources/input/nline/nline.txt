@@ -1,0 +1,8 @@
+hadoop hadoop hive
+hive hive
+hbase hbase hbase hbase
+kafka kafka
+zookeeper
+spark spark spark
+storm
+flink flink

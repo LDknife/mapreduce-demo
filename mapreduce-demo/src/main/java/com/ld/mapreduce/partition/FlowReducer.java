@@ -1,4 +1,4 @@
-package com.ld.mapreduce.serializable;
+package com.ld.mapreduce.partition;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;

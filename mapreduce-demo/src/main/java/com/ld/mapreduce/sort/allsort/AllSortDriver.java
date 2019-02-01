@@ -1,4 +1,4 @@
-package com.ld.mapreduce.serializable;
+package com.ld.mapreduce.sort.allsort;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -10,27 +10,26 @@ import java.io.IOException;
 
 /**
  * @author:ld
- * @create:2019-01-23 17:19
- * @description: 流量统计 驱动类
- * 对文件截取，统计输出 手机号 上行流量 下行流量 总流量  (序列化)
+ * @create:2019-02-01 14:16
+ * @description:
  */
-public class FlowDriver {
+public class AllSortDriver {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        args = new String[]{"e:/input/serializable","e:/serializable"};
+        args = new String[]{"e:/input/serializable","e:/allsort"};
         //1. 获取job对象
         Job job = Job.getInstance();
 
         //2. 设置jar包类路径
-        job.setJarByClass(FlowDriver.class);
+        job.setJarByClass(AllSortDriver.class);
 
         //3. 设置mapper和reducer类路径
-        job.setMapperClass(FlowMapper.class);
-        job.setReducerClass(FlowReducer.class);
+        job.setMapperClass(AllSortMapper.class);
+        job.setReducerClass(AllSortReudcer.class);
 
         //4. 设置map输出参数类型
-        job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(FlowBean.class);
+        job.setMapOutputKeyClass(FlowBean.class);
+        job.setMapOutputValueClass(Text.class);
 
         //5. 设置最终输出参数类型
         job.setOutputKeyClass(Text.class);
